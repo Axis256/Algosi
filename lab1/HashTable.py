@@ -7,10 +7,7 @@ class HashTable:
         self._search_count = 0
 
     def _hash_func(self, value):
-        chr1 = value[0]
-        chr2 = value[1]
-        chr3 = value[len(value) - 1]
-        return ord(chr1) + ord(chr2) + ord(chr3) - 32 * 3
+        return sum([(ord(c) - 32) for c in (value[0:2] + value[-1])])
 
     def add(self, value):
         pi = 16
