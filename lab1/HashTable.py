@@ -1,27 +1,27 @@
 class HashTable:
     def __init__(self):
-        self.capacity = 288
+        self.capacity = 28800
         self.table = [None] * self.capacity
         self._collision_count = 0
         self._comp_count = 0
         self._search_count = 0
 
     def _hash_func(self, value):
-        chr1 = value[0]
-        chr2 = value[1]
-        chr3 = value[len(value) - 1]
-        return ord(chr1) + ord(chr2) + ord(chr3) - 32 * 3
+        return sum([(ord(c) - 32) for c in (value[0:2] + value[-1])])
 
     def add(self, value):
-        pi = 16
+        pi = 1600
         n = self.capacity
         i = self._hash_func(value)
         h0 = i
+        if len(value) < 3:
+            print("Nope")
         if self.table[i] is None or self.table[i] == value:
             self.table[i] = value
         else:
             i = (i + pi) % n
             while i != h0:
+                self._collision_count += 1
                 if self.table[i] is None or self.table == value:
                     self.table[i] = value
                     break
@@ -31,11 +31,13 @@ class HashTable:
                 print("Table overflow")
 
     def find(self, value):
-        pi = 16
+        pi = 1600
         n = self.capacity
         i = self._hash_func(value)
         h0 = i
         self._search_count += 1
+        if len(value) < 3:
+            print("Sorry")
         if self.table[i] is None:
             return None
         elif self.table[i] == value:
@@ -43,7 +45,6 @@ class HashTable:
         else:
             i = (i + pi) % n
             while i != h0:
-                self._collision_count += 1
                 self._comp_count += 1
                 if self.table[i] is None:
                     return None
@@ -58,4 +59,4 @@ class HashTable:
         return self._comp_count / self._search_count
 
     def avg_collisions(self):
-        return self._collision_count / self._search_count
+        return self._collision_count
