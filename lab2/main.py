@@ -4,7 +4,7 @@ from graphs import gen_graph, invert_graph_to_edges
 q = 1
 r = 10 ** 6
 
-with open('time_binary-a.txt', 'w') as file:
+with open('time_d4.txt', 'w') as file:
     for n in range(100, 10001, 100):
         m = int(n ** 2 / 10)
 
