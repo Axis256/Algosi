@@ -32,7 +32,15 @@ class Heap:
         self.key[i] = tmp
 
     def min_child(self, i):
-        return self.key.index(min(self.key[self.get_child(i, 1):self.get_last_child(i) + 1]))
+        min = self.get_child(i, 1)
+        k = 2
+        tmp = self.get_child(i, k)
+        while ((k <= self.d) and (tmp < self.size)):
+            if (self.key[tmp] < self.key[min]):
+                min = tmp
+            k += 1
+            tmp = self.get_child(i, k)
+        return min
 
     def insert(self, value):
         self.size += 1
