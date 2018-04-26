@@ -32,3 +32,12 @@ def invert_graph_to_edges(graph):
             if graph[i][j] != 0:
                 edges[i][j] = graph[i][j]
     return edges
+
+def invert_graph_to_edges_vol_2(graph):
+    edges = []
+    n = len(graph)
+    for i in range(n):
+        for j in range(i, n):
+            if (graph[i][j] != 0):
+                edges.append((i, j, graph[i][j]))
+    return edges
