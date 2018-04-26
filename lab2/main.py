@@ -1,18 +1,18 @@
-from dijkstra import Dijkstra, Dijkstra_heap, Dijkstra_heap_fast
+from dijkstra import Dijkstra, Dijkstra_heap
 from graphs import *
 
 q = 1
 r = 10 ** 6
 
-with open('time_d4.txt', 'a') as file1:
-    with open('time_m.txt', 'a') as file2:
+with open('time_hq - a.txt', 'a') as file1:
+    with open('time_m - a.txt', 'a') as file2:
         for n in range(100, 10001, 100):
-            m = int(n ** 2 // 100)
+            m = int(n ** 2 // 10)
 
             G = gen_graph(n, m, q, r)
 
             time_m = Dijkstra(G, 0)
-            time_h = Dijkstra_heap_fast(invert_graph_to_edges_vol_2(G), 0, len(G) - 1)
+            time_h = Dijkstra_heap(invert_graph_to_edges(G), 0)
 
             file1.write(str(time_h) + ' ')
             file2.write(str(time_m) + ' ')

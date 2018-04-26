@@ -1,48 +1,20 @@
 import timeit
-from collections import defaultdict
 from heapq import *
-from heap import Heap
 
 
-def Dijkstra_heap_fast(edges, f, t):
-    begin = timeit.default_timer()
-
-    g = defaultdict(list)
-    for l, r, c in edges:
-        g[l].append((c, r))
-
-    q, seen = [(0, f, ())], set()
-    while q:
-        (cost, v1, path) = heappop(q)
-        if v1 not in seen:
-            seen.add(v1)
-            path = (v1, path)
-            if v1 == t:
-                end = timeit.default_timer()
-                return end - begin
-
-            for c, v2 in g.get(v1, ()):
-                if v2 not in seen:
-                    heappush(q, (cost + c, v2, path))
-
-    end = timeit.default_timer()
-
-    return end - begin
-
-
-def Dijkstra_heap(edges, start, d):
+def Dijkstra_heap(edges, start):
     begin = timeit.default_timer()
 
     A = [None] * len(edges)
-    queue = Heap(d)
-    queue.insert((0, start))
-    while queue.size != 0:
-        path_len, v = queue.pop()
+    queue = []
+    heappush(queue, (0, start))
+    while len(queue) != 0:
+        path_len, v = heappop(queue)
         if A[v] is None:  # v is unvisited
             A[v] = path_len
             for w, edge_len in edges[v].items():
                 if A[w] is None:
-                    queue.insert((path_len + edge_len, w))
+                    heappush(queue, (path_len + edge_len, w))
 
     # to give same result as original, assign zero distance to unreachable vertices
     # return [0 if x is None else x for x in A]
