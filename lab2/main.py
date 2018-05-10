@@ -4,12 +4,12 @@ from graphs import *
 q = 1
 r = 10 ** 6
 
-with open('time_hq - a.txt', 'a') as file1:
-    with open('time_m - a.txt', 'a') as file2:
+with open('time_hq - b.txt', 'a') as file1:
+    with open('time_m - b.txt', 'a') as file2:
         for n in range(100, 10001, 100):
-            m = int(n ** 2 // 10)
+            m = int(n * (n - 1) / 2)
 
-            G = gen_graph(n, m, q, r)
+            G = gen_comp_graph(n, m, q, r)
 
             time_m = Dijkstra(G, 0)
             time_h = Dijkstra_heap(invert_graph_to_edges(G), 0)

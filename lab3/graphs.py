@@ -39,20 +39,10 @@ def gen_comp_graph(n: int, m: int, q: int, r: int):
     return graph
 
 
-def invert_graph_to_edges(graph):
-    edges = defaultdict(dict)
-    n = len(graph)
-    for i in range(n):
-        for j in range(n):
-            if graph[i][j] != 0:
-                edges[i][j] = graph[i][j]
-    return edges
-
-def invert_graph_to_edges_vol_2(graph):
+def invert_graph_to_edges(n, graph):
     edges = []
-    n = len(graph)
     for i in range(n):
         for j in range(i, n):
             if (graph[i][j] != 0):
-                edges.append((i, j, graph[i][j]))
+                edges.append((graph[i][j], i, j))
     return edges
