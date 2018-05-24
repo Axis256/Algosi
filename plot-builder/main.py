@@ -2,17 +2,17 @@ from matplotlib import pyplot as plt
 import matplotlib.patches as mpatches
 
 
-with open('time_prim.txt', 'r') as file1:
+with open('time_hq - b.txt', 'r') as file1:
     time_binary_a = list(map(float, file1.read().split()))
 
-with open('time_kruskal.txt', 'r') as file2:
+with open('time_m - b.txt', 'r') as file2:
     time_ternary_a = list(map(float, file2.read().split()))
 
-with open('time_prim b.txt', 'r') as file1:
-    time_binary_b = list(map(float, file1.read().split()))
+#with open('time_prim b.txt', 'r') as file1:
+    #time_binary_b = list(map(float, file1.read().split()))
 
-with open('time_kruskal b.txt', 'r') as file2:
-    time_ternary_b = list(map(float, file2.read().split()))
+#with open('time_kruskal b.txt', 'r') as file2:
+    #time_ternary_b = list(map(float, file2.read().split()))
 
 x_a = [i for i in range(100, 10001, 100)]
 x_b = [i for i in range(100, 10001, 100)]
@@ -29,11 +29,11 @@ plt.ylabel('time in seconds')
 plt.plot(x_a, time_binary_a, 'b-', x_a, time_ternary_a, 'r-')
 plt.grid(True)
 
-plt.subplot(122)
+'''plt.subplot(122)
 plt.title('variant B')
 plt.xlabel('number of vertices')
 plt.ylabel('time in seconds')
-plt.plot(x_b, time_binary_b, 'b-', x_b, time_ternary_b, 'r-')
-plt.grid(True)
+plt.plot(x_b, time_binary_b, 'b-') #, x_b, time_ternary_b, 'r-')
+plt.grid(True)'''
 
 plt.show()

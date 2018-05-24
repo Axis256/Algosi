@@ -28,7 +28,7 @@ def MSP_PRIM(n, graph):
 
     MSP = []
     used = [False for i in range(n)]         # visited vertices
-    min_e = [sys.maxsize for i in range(n)]  # min distance from curr vertice to others
+    min_e = [sys.maxsize for i in range(n)]  # min distance from curr verticle to others
     sel_e = [-1 for i in range(n)]           # second part of the edge
     min_e[0] = 0
 
@@ -53,7 +53,7 @@ def MSP_PRIM(n, graph):
 
         end = timeit.default_timer()
         MSP.clear()
-        return (end - begin)  # return elapsed time in seconds
+        return (end - begin)
 
 q = 1
 r = 10 ** 6
