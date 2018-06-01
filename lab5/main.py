@@ -1,5 +1,5 @@
 import math
-from scipy.special import comb
+#from scipy.special import comb
 import timeit
 
 a, b, n = map(int, input().split())
@@ -29,9 +29,9 @@ begin = timeit.default_timer()
 
 for i in range(n + 1):
     if check_wonderful(a * i + b * (n - i), a, b):
-        count += comb(n, i, exact=True)
+        count += binomial_coefficient(i, n - i)
 
 end = timeit.default_timer()
 
 print(count % 1000000007)
-print(end - begin)
+#

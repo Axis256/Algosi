@@ -23,28 +23,27 @@ class Graph:
         return True if visited[t] else False
 
 
-    def maximum_flow(self, source, sink):
+    def minimum_cut(self, source, sink):
 
         parent = [-1]*(self.row)
-        max_flow = 0
+        min_cut = 0
 
         while self.BFS(source, sink, parent):
-            path_flow = float("Inf")
+            min_path = float("Inf")
             s = sink
             while(s != source):
-                path_flow = min(path_flow, self.graph[parent[s]][s])
+                min_path = min(min_path, self.graph[parent[s]][s])
                 s = parent[s]
 
-            max_flow += path_flow
-            print(path_flow)
+            min_cut += min_path
             v = sink
             while(v != source):
                 u = parent[v]
-                self.graph[u][v] -= path_flow
-                self.graph[v][u] += path_flow
+                self.graph[u][v] -= min_path
+                self.graph[v][u] += min_path
                 v = parent[v]
 
-        return max_flow
+        return min_cut
 
 e1 = randint(1, 10)
 e2 = randint(1, 10)
@@ -66,4 +65,7 @@ sink = 5
 for line in graph:
     print(line)
 
-print("The maximum possible flow is %d " % g.maximum_flow(source, sink))
+print("Maximum flow: %d " % g.minimum_cut(source, sink))
+
+#for line in graph:
+#    print(line)
